@@ -14,11 +14,15 @@ app.get('/helle', (req, res) => {
 
 
 async function startServer() {
-    await connectToDB();
+    try {
+        await connectToDB();
 
-    app.listen(process.env.PORT, () => {
-        console.log('Start Server...');
-    });
+        app.listen(process.env.PORT, () => {
+            console.log('Start Server...');
+        });
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 startServer();
