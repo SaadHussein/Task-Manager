@@ -1,17 +1,14 @@
 const express = require('express');
-require('dotenv').config();
 const TaskRouter = require('./routes/tasks');
 const { connectToDB } = require('./db/connect');
+require('dotenv').config();
 
 const app = express();
 
+app.use(express.static('./public'));
 app.use(express.json());
+
 app.use('/api/v1/tasks', TaskRouter);
-
-app.get('/helle', (req, res) => {
-    res.send('Welcome To Task Manager.');
-});
-
 
 async function startServer() {
     try {
